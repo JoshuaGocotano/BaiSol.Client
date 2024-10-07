@@ -10,12 +10,14 @@ import { Outlet } from "react-router-dom";
 import { getClientSidebarLinks } from "../lib/constants/SidebarLinks";
 import { getClientProjId } from "../lib/API/Client/ClientProjectAPI";
 
-const ClientLayout = () => {
-  const dispatch = useDispatch();
 
 // const user = useSelector(selectUser);
 // const customerEmail = user.role === "Client" ? user.email : "";
-const customerEmail = "richardddquirante98@gmail.com";
+
+const ClientLayout = () => {
+  const dispatch = useDispatch();
+
+const customerEmail = "roboam125@gmail.com";
   const { data: clientProjId, isLoading, error } = getClientProjId(customerEmail);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

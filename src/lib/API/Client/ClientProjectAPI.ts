@@ -9,7 +9,7 @@ interface IProjId {
 
 // const user = useSelector(selectUser);
 // const userEmail = user.email || "";
-const userEmail = "richardddquirante98@gmail.com";
+// const userEmail = "richardddquirante98@gmail.com";
 
 export const getClientProjId = (userEmail: string) => {
     return useQuery<IProjId, Error>({
