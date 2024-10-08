@@ -1,11 +1,18 @@
 import { Mutation, useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../AuthAPI";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../state/authSlice";
 
 // const userEmail = useSelector(selectUser);
 const userEmail = "dosdos.maker@gmail.com";
+=======
+import { useUserEmail } from "../../../state/Hooks/userHook";
+
+// const userEmail = useSelector(selectUser);
+// const userEmail = "richardqweweuirante98@gmail.com";
+>>>>>>> 186294d0bc445b38b9ff97ea677d487ec826c5f5
 
 export interface IAllRequest {
   reqId: number;
@@ -21,6 +28,7 @@ export interface IAllRequest {
 }
 
 export const getRequestsByProj = () => {
+  const userEmail = useUserEmail();
   return useQuery<IAllRequest[], Error>({
     queryKey: ["request-by-project", userEmail],
     queryFn: async () => {
@@ -40,6 +48,7 @@ interface IRequestSupplies {
 }
 
 export const getRequestMaterialSupplies = (supplyCtgry: string) => {
+  const userEmail = useUserEmail();
   return useQuery<IRequestSupplies[], Error>({
     queryKey: ["request-material-supplies", supplyCtgry],
     queryFn: async () => {
@@ -59,6 +68,7 @@ interface IActionAcknowledge {
 }
 
 export const useAcknowledgeRequest = () => {
+  const userEmail = useUserEmail();
   return useMutation({
     mutationFn: async (data: IActionAcknowledge) => {
       const response = await api.put(
@@ -91,6 +101,7 @@ interface IRequestDetail {
 }
 
 export const useRequestSupply = () => {
+  const userEmail = useUserEmail();
   return useMutation({
     mutationFn: async (formData: IRequestSupply) => {
       const response = await api.post(
@@ -130,6 +141,7 @@ interface IAssignedMaterials {
 }
 
 export const getAssignedMaterialsByFacilitator = () => {
+  const userEmail = useUserEmail();
   return useQuery<IAssignedMaterials[], Error>({
     queryKey: ["assigned-materials", userEmail],
     queryFn: async () => {
@@ -162,6 +174,7 @@ interface IAssignedEquipment {
 }
 
 export const getAssignedEquipmentByFacilitator = () => {
+  const userEmail = useUserEmail();
   return useQuery<IAssignedEquipment[], Error>({
     queryKey: ["assigned-equipment", userEmail],
     queryFn: async () => {

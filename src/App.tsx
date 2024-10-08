@@ -31,6 +31,7 @@ import AssignedSupplyTable from "./Facilitator/components/tables/AssignedSupplyT
 import AssignedSupplyPage from "./Facilitator/pages/AssignedSupplyPage";
 import Form from "./main/components/Quotation/Form";
 import ClientProjectQuotationPage from "./Client/pages/ClientProjectQuotationPage";
+import { registerLicense } from "@syncfusion/ej2/base";
 
 const queryClient = new QueryClient({});
 
@@ -69,7 +70,7 @@ function App() {
         {/* <Route element={<ClientLayout />}>
           <Route path="/" element={<ClientPage />} />
           <Route
-            path="project/:projId"
+            path="quotation/:projId"
             element={<ClientProjectQuotationPage />}
           />
           <Route path="*" element={<PageNotFound />} />
@@ -84,7 +85,11 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Route> */}
 
+<<<<<<< HEAD
         {userRole === "Admin" ? (
+=======
+        { userRole === "Admin" ? (
+>>>>>>> 186294d0bc445b38b9ff97ea677d487ec826c5f5
           <Route element={<AdminLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="project" element={<ProjectPage />} />
@@ -104,7 +109,7 @@ function App() {
           <Route element={<ClientLayout />}>
             <Route path="/" element={<ClientPage />} />
           <Route
-            path="project/:projId"
+            path="quotation/:projId"
             element={<ClientProjectQuotationPage />}
           />
             <Route path="*" element={<PageNotFound />} />

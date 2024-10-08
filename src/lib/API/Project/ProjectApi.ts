@@ -3,6 +3,7 @@ import { api } from "../AuthAPI";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../state/authSlice";
 import { toast } from "react-toastify";
+import { useClientUserEmail } from "../../../state/Hooks/userHook";
 
 interface Project {
   projId: string; // UUID format
@@ -116,10 +117,11 @@ export interface IProjectInfo {
   projectDateValidity: string;
 }
 
-// fetch all project Info
-export const getProjectInfo = (projId?: string) =>
-  useQuery<IProjectInfo, Error>({
-    queryKey: ["project-Info", projId, customerEmail],
+// Fetch all project info
+export const getProjectInfo = (projId?: string) => {
+  const customerEmail = useClientUserEmail();
+  return useQuery<IProjectInfo, Error>({
+    queryKey: ["project-info", projId, customerEmail],
     queryFn: () =>
       api
         .get("api/Project/ProjectQuotationInfo", {
@@ -127,6 +129,7 @@ export const getProjectInfo = (projId?: string) =>
         })
         .then((res) => res.data),
   });
+};
 
 export interface IClientProjectInfo {
   projId: string;
@@ -189,11 +192,12 @@ export interface IProjectSupply {
 
 // const user = useSelector(selectUser);
 // const customerEmail = user.role === "Client" ? user.email : "";
-const customerEmail = "richardddquirante98@gmail.com";
+// const customerEmail = "richardddquirante98@gmail.com";
 
 // fetch all project Supply
-export const getProjectSupply = (projId?: string) =>
-  useQuery<IProjectSupply[], Error>({
+export const getProjectSupply = (projId?: string) => {
+  const customerEmail = useClientUserEmail();
+  return useQuery<IProjectSupply[], Error>({
     queryKey: ["project-Supply", projId, customerEmail],
     queryFn: () =>
       api
@@ -202,6 +206,7 @@ export const getProjectSupply = (projId?: string) =>
         })
         .then((res) => res.data),
   });
+};
 
 export interface ProjectQuotationTotalExpense {
   quoteId: string;
@@ -217,8 +222,9 @@ export interface ProjectQuotationTotalExpense {
 }
 
 // fetch all project Expense
-export const getProjectExpense = (projId?: string) =>
-  useQuery<ProjectQuotationTotalExpense, Error>({
+export const getProjectExpense = (projId?: string) => {
+  const customerEmail = useClientUserEmail();
+  return useQuery<ProjectQuotationTotalExpense, Error>({
     queryKey: ["project-Expense", projId, customerEmail], // Include parameters for better cache control
     queryFn: () =>
       api
@@ -227,3 +233,4 @@ export const getProjectExpense = (projId?: string) =>
         })
         .then((res) => res.data),
   });
+};
